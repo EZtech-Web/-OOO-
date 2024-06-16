@@ -701,7 +701,7 @@ section.lazy-placeholder:after {
 .cid-BR6muZvLP4 .card-wrapper {
   display: flex;
   border-radius: 10px !important;
-  background: #353535;
+  background: #001902;
 }
 .cid-BR6muZvLP4 .card-wrapper:not(:nth-last-child(1)) {
   margin-bottom: 1rem;
@@ -858,10 +858,10 @@ section.lazy-placeholder:after {
   color: #1bff00;
 }
 .cid-BR6muZvLP4 P {
-  color: #fafafa;
+  color: #ffffff;
   text-align: left;
 }
 .cid-BR6muZvLP4 .card-title {
   text-align: left;
-  color: #ffe161;
+  color: #ffd41e;
 }
