@@ -28,7 +28,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Signika:300,400,500,600,700&display=swap"></noscript>
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Calistoga:400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Calistoga:400&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=lZLbzQ"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=lZLbzQ" type="text/css">
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=YkRxZi"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=YkRxZi" type="text/css">
 
   
   
@@ -36,7 +36,7 @@
 </head>
 <body>
   
-  <section class="witsec-mailform mbr-section cid-BR6muZvLP4" id="design-block-BR6muZvLP4" data-rv-view="3">
+  <section class="witsec-mailform mbr-section cid-BR6muZvLP4" id="design-block-BR6muZvLP4" data-rv-view="74">
 
 
     
@@ -75,45 +75,65 @@
     </div>
     </div>
     <div class="card form-wrapper col-12 col-md-6">
+<!--
     <form class="card-wrapper mbr-form">
-    
-    <input type="hidden" name="subject" value="A message from your website.">
-    
-    
-    
-    
-    <div class="rowflexrev flex-column-reverse">
+    <input type="hidden" name="recipient" value="{{recipientID}}" mbr-if="recipientID">
+    <input type="hidden" name="subject" value="{{txtSubject}}">
+    <input type="hidden" name="autorespond" value="1" mbr-if="autorespond=='1'">
+    <input type="hidden" name="redirectURL" value="{{redirectURL}}" mbr-if="onsuccess=='1'">
+    <input type="hidden" name="mtxt" value="{{mtxt}}" mbr-if="mtxt">
+    <input type="hidden" name="rtxt" value="{{rtxt}}" mbr-if="rtxt &amp;&amp; autorespond > 0">
+    <div class="rowflexrev" mbr-class="{ 'flex-column': !confirmationBelow, 'flex-column-reverse': confirmationBelow }">
     <div class="row">
     <div class="col-md-12 form-group ws-form-alerts">
-    <div hidden="hidden" class="alert alert-success col-12 mbr-alert-success mbr-fonts-style display-7">Thanks for filling out the form!</div>
-    <div hidden="hidden" class="alert alert-danger col-12 mbr-alert-danger mbr-fonts-style display-7">An error occured. Please try again.</div>
+    <div hidden="hidden" mbr-text class="alert alert-success col-12 mbr-alert-success mbr-fonts-style" mbr-class="{showAlerts: !isPublish && showAlerts}" mbr-theme-style="display-7" data-app-edit="content" data-app-selector=".mbr-alert-success" mbr-if="onsuccess=='0'">Thanks for filling out the form!</div>
+    <div hidden="hidden" mbr-text class="alert alert-danger col-12 mbr-alert-danger mbr-fonts-style" mbr-class="{showAlerts: !isPublish && showAlerts}" mbr-theme-style="display-7" data-app-edit="content" data-app-selector=".mbr-alert-danger">An error occured. Please try again.</div>
     </div>
     </div>
     <div class="row">
-    <div class="col-md-12 form-group">
-    
-    <input id="fieldcolor" type="text" name="name" required="required" class="form-control display-7" placeholder="Name">
+    <div class="col-md-12 form-group" mbr-class="{'col-md-6': !showPhone}">
+    <p mbr-text mbr-theme-style="display-7" class="mbr-section-labels mbr-fonts-style" data-app-edit="content" data-app-selector=".mbr-section-labels" mbr-if="showLabels">Name</p>
+    <input id="fieldcolor" type="text" name="name" placeholder="{{phName}}" mbr-theme-style="display-7" required="required" class="form-control">
+    </div>
+    <div class="col-md-12 form-group" mbr-class="{'col-md-6': !showPhone}">
+    <p mbr-text mbr-theme-style="display-7" class="mbr-section-labels mbr-fonts-style" data-app-edit="content" data-app-selector=".mbr-section-labels" mbr-if="showLabels">Email</p>
+    <input id="fieldcolor" type="email" name="email" placeholder="{{phEmail}}" mbr-theme-style="display-7" required="required" class="form-control">
+    </div>
+    <div mbr-if="showPhone" class="col-md-12 form-group">
+    <p mbr-text mbr-theme-style="display-7" class="mbr-section-labels mbr-fonts-style" data-app-edit="content" data-app-selector=".mbr-section-labels" mbr-if="showLabels">Phone</p>
+    <input id="fieldcolor" type="tel" name="phone" placeholder="{{phPhone}}" mbr-theme-style="display-7" class="form-control">
     </div>
     <div class="col-md-12 form-group">
-    
-    <input id="fieldcolor" type="email" name="email" required="required" class="form-control display-7" placeholder="Email">
+    <p mbr-text mbr-theme-style="display-7" class="mbr-section-labels mbr-fonts-style" data-app-edit="content" data-app-selector=".mbr-section-labels" mbr-if="showLabels">Message</p>
+    <textarea id="fieldcolor" name="message" placeholder="{{phMessage}}" mbr-theme-style="display-7" required="required" class="form-control"></textarea>
     </div>
-    <div class="col-md-12 form-group">
-    
-    <input id="fieldcolor" type="tel" name="phone" class="form-control display-7" placeholder="Phone">
+    <div class="col-md-12 form-group mb-3" mbr-if="showUpload">
+    <p mbr-text mbr-theme-style="display-7" class="mbr-section-labels mbr-fonts-style" data-app-edit="content" data-app-selector=".mbr-section-labels" mbr-if="showLabels">File</p>
+    <input class="form-control uploadBtn" type="file" name="file" accept="{{acceptedFileTypes}}" mbr-if="!uploadMultiple">
+    <input class="form-control uploadBtn" type="file" name="file[]" accept="{{acceptedFileTypes}}" mbr-if="uploadMultiple" multiple>
     </div>
-    <div class="col-md-12 form-group">
-    
-    <textarea id="fieldcolor" name="message" required="required" class="form-control display-7" placeholder="Message"></textarea>
+    <div mbr-if="autorespond=='2' || showGDPR" class="col-md-12 justify-content-center form-group">
+    <p class="mbr-section-autorespond mbr-text mbr-fonts-style" mbr-theme-style="display-7" data-app-edit="content" data-app-selector=".mbr-section-autorespond" mbr-if="autorespond=='2'">
+    <input type="checkbox" name="autorespond" value="1">
+    <label class="mbr-section-autorespond mbr-fonts-style">Send me a copy</label>
+    </p>
+    <p class="mbr-section-gdpr mbr-text mbr-fonts-style" mbr-theme-style="display-7" data-app-edit="content" data-app-selector=".mbr-section-gdpr" mbr-if="showGDPR">
+    <input type="checkbox" name="GDPR" value="1" required>
+    <label class="mbr-section-gdpr mbr-fonts-style">By continuing you agree to our <a href="terms.html" class="text-success">Terms of Service</a> and <a href="policy.html" class="text-success">Privacy Policy</a>.</label></p>
+    </div>
+    <div mbr-if="showTerms" class="col-md-12 justify-content-center form-group">
+    <p class="mbr-section-terms mbr-text mbr-fonts-style" mbr-theme-style="display-7" data-app-edit="content" data-app-selector=".mbr-section-terms">This form uses Google's reCAPTCHA. By continuing you agree to the <a href="https://policies.google.com/privacy" target="_blank" class="text-primary">Privacy</a> and <a href="https://policies.google.com/terms" target="_blank">Terms</a>.
+    </p>
     </div>
     
-    
-    
-    
-    <div class="col-md-12 input-group-btn align-center"><button type="submit" class="btn btn-form btn-warning display-4">SEND FORM</button></div>
+    <div class="col-md-12 input-group-btn {{alignSubmit}}" mbr-buttons="true" mbr-theme-style="display-4" data-toolbar="-mbrBtnMove,-mbrBtnLink,-mbrBtnAdd"><button type="submit" class="btn btn-form btn-warning" data-app-placeholder="Scrivi Testo">SEND FORM</button></div>
     </div>
     </div>
     </form>   
+-->
+    <form>
+    <div class="card-wrapper"> Test Iframe Chat </div>
+    </form>
     </div>
     </div>
     <div class="mbr-section-head mb-4">
